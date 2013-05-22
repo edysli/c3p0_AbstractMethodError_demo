@@ -44,7 +44,7 @@ public class ApplicationConfiguration {
 	@Bean(destroyMethod = "shutdown")
 	public DataSource database() {
 		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-		EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.HSQL).setName("Demo").build();
+		EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.HSQL).setName("Demo").addScript("create-schemas.sql").build();
 		return db;
 	}
 }
