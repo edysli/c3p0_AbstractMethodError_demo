@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Repository
-public class DemoEntityDAOImpl {
+public class DemoEntityDAOImpl implements DemoEntityDAO {
 
 	@Inject
 	private SessionFactory sessionFactory;
@@ -36,5 +36,13 @@ public class DemoEntityDAOImpl {
 		    	connection.setSchema(schemaName);
 		    }
 		});
+	}
+
+	@Override
+	public void createDemoEntityInAllSchemas(DemoEntity entityToWrite) {
+		setSchema("Demo1");
+		getSession().save(entityToWrite);
+		setSchema("Demo2");
+		getSession().save(entityToWrite);
 	}
 }
