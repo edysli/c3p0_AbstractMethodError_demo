@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.mchange.v2.c3p0.DataSources;
 
 @Configuration
-@ComponentScan({"ed.demo.c3p0.dao"})
+@ComponentScan({"ed.demo.c3p0"})
 @EnableTransactionManagement
 public class ApplicationConfiguration {
 	@Bean
@@ -32,7 +32,7 @@ public class ApplicationConfiguration {
 	public LocalSessionFactoryBean sessionFactory(DataSource pooledDatabase) {
 		LocalSessionFactoryBean lsfb = new LocalSessionFactoryBean();
 		lsfb.setDataSource(pooledDatabase);
-		lsfb.setPackagesToScan(new String[] {"ed.demo.c3p0.*"});
+		lsfb.setPackagesToScan(new String[] {"ed.demo.c3p0"});
 		return lsfb;
 	}
 
